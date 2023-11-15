@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Nov 2023 pada 06.08
+-- Waktu pembuatan: 15 Nov 2023 pada 05.01
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -78,7 +78,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `email`, `password`) VALUES
-(1, 'nikeshtiwari3230@gmail.com', '12345');
+(1, 'admin@gmail.com', 'admin');
 
 -- --------------------------------------------------------
 
@@ -89,15 +89,16 @@ INSERT INTO `admin` (`admin_id`, `email`, `password`) VALUES
 CREATE TABLE `booking` (
   `tenant_id` int(11) NOT NULL,
   `property_id` int(11) NOT NULL,
-  `booked` varchar(255) NOT NULL
+  `booked` varchar(255) NOT NULL,
+  `booking_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `booking`
 --
 
-INSERT INTO `booking` (`tenant_id`, `property_id`, `booked`) VALUES
-(18, 125, '');
+INSERT INTO `booking` (`tenant_id`, `property_id`, `booked`, `booking_id`) VALUES
+(18, 125, '', 1);
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,8 @@ CREATE TABLE `chat` (
 
 INSERT INTO `chat` (`owner_id`, `tenant_id`, `message`) VALUES
 (1, 18, 'hello'),
-(2, 18, 'hai za\r\n');
+(2, 18, 'hai za\r\n'),
+(2, 18, 'halo');
 
 -- --------------------------------------------------------
 
@@ -188,7 +190,8 @@ INSERT INTO `review` (`review_id`, `comment`, `rating`, `property_id`) VALUES
 (5, 'This property is very nice.', 5, 123),
 (6, 'I love this property.', 4, 124),
 (7, 'ssoo good', 5, 123),
-(8, 'this properties so niceee', 4, 125);
+(8, 'this properties so niceee', 4, 125),
+(9, 'good', 5, 125);
 
 -- --------------------------------------------------------
 
@@ -233,6 +236,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
+-- Indeks untuk tabel `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`booking_id`);
+
+--
 -- Indeks untuk tabel `owner`
 --
 ALTER TABLE `owner`
@@ -275,6 +284,12 @@ ALTER TABLE `admin`
   MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT untuk tabel `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `booking_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `owner`
 --
 ALTER TABLE `owner`
@@ -290,7 +305,7 @@ ALTER TABLE `property_photo`
 -- AUTO_INCREMENT untuk tabel `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `tenant`
