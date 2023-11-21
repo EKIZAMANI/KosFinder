@@ -1,21 +1,15 @@
 <?php 
 $property_id='';
-$country='';
+
 $province='';
-$zone='';
-$district='';
+
 $city='';
-$vdc_municipality='';
-$ward_no='';
-$tole='';
+
 $contact_no='';
 $property_type='';
 $estimated_price='';
 $total_rooms='';
-$bedroom='';
-$living_room='';
-$kitchen='';
-$bathroom='';
+
 $description='';
 $latitude='';
 $longitude='';
@@ -41,27 +35,22 @@ if(isset($_POST['owner_update'])){
 
 function add_property(){
 
-	global $property_id,$country,$province,$zone,$district,$city,$vdc_municipality,$ward_no,$tole,$contact_no,$property_type,$estimated_price,$total_rooms,$bedroom,$living_room,$kitchen,$bathroom,$description,$latitude,$path,$p_photo,$property_photo_id,$longitude,$owner_id,$booked,$db;
+	global $property_id,$province,$city,$contact_no,$property_type,$estimated_price,$total_rooms,$description,$latitude,$path,$p_photo,$property_photo_id,$longitude,$owner_id,$booked,$db;
 
 
 
 	
-	$country=validate($_POST['country']);
+	
 	$province=validate($_POST['province']);
-	$zone=validate($_POST['zone']);
-	$district=validate($_POST['district']);
+
+	
 	$city=validate($_POST['city']);
-	$vdc_municipality=validate($_POST['vdc_municipality']);
-	$ward_no=validate($_POST['ward_no']);
-	$tole=validate($_POST['tole']);
+	
 	$contact_no=validate($_POST['contact_no']);
 	$property_type=validate($_POST['property_type']);
 	$estimated_price=validate($_POST['estimated_price']);
 	$total_rooms=validate($_POST['total_rooms']);
-	$bedroom=validate($_POST['bedroom']);
-	$living_room=validate($_POST['living_room']);
-	$kitchen=validate($_POST['kitchen']);
-	$bathroom=validate($_POST['bathroom']);
+	
 	$description=validate($_POST['description']);
 	$latitude=validate($_POST['latitude']);
    	$longitude=validate($_POST['longitude']);
@@ -75,7 +64,7 @@ function add_property(){
           while($rowss=mysqli_fetch_assoc($result1)){
             $owner_id=$rowss['owner_id'];
 
-   	$sql = "INSERT INTO add_property(country,province,zone,district,city,vdc_municipality,ward_no,tole,contact_no,property_type,estimated_price,total_rooms,bedroom,living_room,kitchen,bathroom,description,latitude,longitude,booked,owner_id) VALUES('$country','$province','$zone','$district','$city','$vdc_municipality','$ward_no','$tole','$contact_no','$property_type','$estimated_price','$total_rooms','$bedroom','$living_room','$kitchen','$bathroom','$description','$latitude','$longitude','$booked','$owner_id')";
+   	$sql = "INSERT INTO add_property(province,city,contact_no,property_type,estimated_price,total_rooms,description,latitude,longitude,booked,owner_id) VALUES('$province','$city','$contact_no','$property_type','$estimated_price','$total_rooms','$description','$latitude','$longitude','$booked','$owner_id')";
 		$query=mysqli_query($db,$sql);
 
 		$property_id = mysqli_insert_id($db);
@@ -100,38 +89,39 @@ function add_property(){
 
 <style>
 .alert {
-  padding: 20px;
-  background-color: #DC143C;
-  color: white;
+    padding: 20px;
+    background-color: #DC143C;
+    color: white;
 }
 
 .closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .closebtn:hover {
-  color: black;
+    color: black;
 }
 </style>
 <script>
-	window.setTimeout(function() {
-    $(".alert").fadeTo(1000, 0).slideUp(500, function(){
-        $(this).remove(); 
+window.setTimeout(function() {
+    $(".alert").fadeTo(1000, 0).slideUp(500, function() {
+        $(this).remove();
     });
 }, 2000);
 </script>
 <div class="container">
-<div class="alert" role='alert'>
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  <center><strong>Your Product has been uploaded.</strong></center>
-</div></div>
+    <div class="alert" role='alert'>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <center><strong>Your Product has been uploaded.</strong></center>
+    </div>
+</div>
 
 
 <?php
@@ -159,38 +149,39 @@ function owner_update(){
 
 <style>
 .alert {
-  padding: 20px;
-  background-color: #DC143C;
-  color: white;
+    padding: 20px;
+    background-color: #DC143C;
+    color: white;
 }
 
 .closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .closebtn:hover {
-  color: black;
+    color: black;
 }
 </style>
 <script>
-	window.setTimeout(function() {
-    $(".alert").fadeTo(1000, 0).slideUp(500, function(){
-        $(this).remove(); 
+window.setTimeout(function() {
+    $(".alert").fadeTo(1000, 0).slideUp(500, function() {
+        $(this).remove();
     });
 }, 2000);
 </script>
 <div class="container">
-<div class="alert" role='alert'>
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  <center><strong>Your Information has been updated.</strong></center>
-</div></div>
+    <div class="alert" role='alert'>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <center><strong>Your Information has been updated.</strong></center>
+    </div>
+</div>
 
 
 <?php

@@ -37,49 +37,51 @@ $sql="SELECT * FROM tenant where email='$u_email'";
                 $mailheaders="From: RentHouse\n";
 
                 //mail send
-                mail($recipient,$subject,$msg,$mailheaders);
+                ini_set('smtp_port', 25);
+                // mail($recipient,$subject,$msg,$mailheaders);
 
 		?>
 
 
 <style>
 .alert {
-  padding: 20px;
-  background-color: #DC143C;
-  color: white;
+    padding: 20px;
+    background-color: #DC143C;
+    color: white;
 }
 
 .closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .closebtn:hover {
-  color: black;
+    color: black;
 }
 </style>
 <script>
-	window.setTimeout(function() {
-    $(".alert").fadeTo(1000, 0).slideUp(500, function(){
-        $(this).remove(); 
+window.setTimeout(function() {
+    $(".alert").fadeTo(1000, 0).slideUp(500, function() {
+        $(this).remove();
     });
 }, 2000);
 </script>
 <div class="container">
-<div class="alert" role='alert'>
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  <center><strong>Thankyou for booking this property.</strong></center>
-</div></div>
+    <div class="alert" role='alert'>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <center><strong>Thankyou for booking this property.</strong></center>
+    </div>
+</div>
 
 
 
-		<?php
+<?php
 
 
 
