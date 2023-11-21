@@ -1,4 +1,4 @@
-<?php 
+<?php  
 session_start();
 isset($_SESSION["email"]);
 
