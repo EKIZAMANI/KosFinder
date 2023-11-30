@@ -16,7 +16,28 @@ include("engine.php");
 </head>
 
 <body>
+    <?php
+// Check for success parameter
+if (isset($_GET['success']) && $_GET['success'] == 1) {
+    echo '
+    <div class="container">
+        <div class="alert alert-success" role="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>
+            <center><strong>Data Berhasil di Hapus!.</strong></center>
+        </div>
+    </div>';
+}
 
+if (isset($_GET['success']) && $_GET['success'] == 2) {
+    echo '
+    <div class="container">
+        <div class="alert alert-success" role="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>
+            <center><strong>Data Berhasil di Update.</strong></center>
+        </div>
+    </div>';
+}
+?>
     <div class="container-fluid">
         <ul class="nav nav-pills nav-justified">
             <li class="active" style="background-color: #FFF8DC"><a data-toggle="pill" href="#home">Profile</a></li>
@@ -180,7 +201,7 @@ include("engine.php");
 
 
                     <?php
-        //echo '<a href="send-message.php?owner_id='.$owner_id.'&tenant_id='.$tenant_id.'">'.$rows["full_name"].'</a>';
+        // echo '<a href="send-message.php?owner_id='.$owner_id.'&tenant_id='.$tenant_id.'">'.$rows["full_name"].'</a>';
     }
   }}}}}?>
                 </div>
@@ -434,15 +455,23 @@ include("engine.php");
                                     <img src="<?php echo $row['p_photo'] ?>" width="50px">
                                     <?php }}  ?>
                                 </td>
-                                <form method="POST">
+                                <form method="POST" action="delete.php">
                                     <td>
+
                                         <input type="hidden" name="property_id"
                                             value="<?php echo $rows['property_id']; ?>">
-                                        <a data-toggle="pill" class="btn btn-success" name="edit_property"
-                                            onclick="<?php $property_id = $rows['property_id'] ?>"
-                                            href="#menu5">Edit</a><input type="submit" class="btn btn-danger"
-                                            name="delete_property" value="Delete">
+                                        <!-- <a href="update.php?id="data-toggle="pill" class="btn btn-success" name="edit_property"
+                                            href="#menu5">Edit</a> -->
+                                        <div
+                                            style="background-color: #36A5B2; width: 70% ; border-radius: 3px; padding-bottom: 5px">
+                                            <a style="color: white; font-size: 13px; padding: 8px"
+                                                href="update.php?id=<?php echo $rows['property_id']; ?>">Update</a>
+                                        </div>
+                                        <input type="submit" class="btn btn-danger" name="delete_property"
+                                            value="Delete">
+
                                     </td>
+
                             </tr>
                             </form>
                             <?php }} ?>
@@ -494,6 +523,8 @@ include("engine.php");
                                 </div>
                             </div>
 
+
+
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="property_type">Property Type:</label>
@@ -520,6 +551,37 @@ include("engine.php");
                                     <textarea type="comment" class="form-control" id="description"
                                         placeholder="Enter Property Description" name="description"></textarea>
                                 </div>
+                                <hr>
+
+                                <table class="table table-bordered" border="0">
+                                    <tr>
+                                        <div class="form-group">
+                                            <label><b>Latitude/Longitude:</b><span
+                                                    style="color:red; font-size: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    *Click on Button</span></label>
+                                            <td><input type="text" name="latitude" placeholder="Latitude" id="latitude"
+                                                    class="form-control name_list" readonly required /></td>
+                                            <td><input type="text" name="longitude" placeholder="Longitude"
+                                                    id="longitude" class="form-control name_list" readonly required />
+                                            </td>
+                                            <td><input type="button" value="Get Latitude and Longitude"
+                                                    onclick="getLocation()" class="btn btn-success col-lg-12"></td>
+                                        </div>
+                                    </tr>
+                                </table>
+                                <table class="table" id="dynamic_field">
+                                    <tr>
+                                        <div class="form-group">
+                                            <label><b>Photos:</b></label>
+                                            <td><input type="file" name="p_photo[]" placeholder="Photos"
+                                                    class="form-control name_list" required accept="image/*" /></td>
+                                            <td><button type="button" id="add" name="add"
+                                                    class="btn btn-success col-lg-12">Add More</button></td>
+                                        </div>
+                                    </tr>
+                                </table>
+                                <input name="lat" type="text" id="lat" hidden>
+                                <input name="lng" type="text" id="lng" hidden>
                                 <hr>
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-primary btn-lg col-lg-12"

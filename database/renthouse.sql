@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Nov 2023 pada 05.01
+-- Waktu pembuatan: 30 Nov 2023 pada 09.01
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -29,22 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `add_property` (
   `property_id` int(10) NOT NULL,
-  `country` varchar(50) NOT NULL,
   `province` varchar(50) NOT NULL,
-  `zone` varchar(50) NOT NULL,
-  `district` varchar(50) NOT NULL,
   `city` varchar(100) NOT NULL,
-  `vdc_municipality` varchar(50) NOT NULL,
-  `ward_no` int(10) NOT NULL,
-  `tole` varchar(100) NOT NULL,
   `contact_no` bigint(10) NOT NULL,
   `property_type` varchar(50) NOT NULL,
   `estimated_price` bigint(10) NOT NULL,
   `total_rooms` int(10) NOT NULL,
-  `bedroom` int(10) NOT NULL,
-  `living_room` int(10) NOT NULL,
-  `kitchen` int(10) NOT NULL,
-  `bathroom` int(10) NOT NULL,
   `description` varchar(2000) NOT NULL,
   `latitude` decimal(9,6) NOT NULL,
   `longitude` decimal(9,6) NOT NULL,
@@ -56,10 +46,9 @@ CREATE TABLE `add_property` (
 -- Dumping data untuk tabel `add_property`
 --
 
-INSERT INTO `add_property` (`property_id`, `country`, `province`, `zone`, `district`, `city`, `vdc_municipality`, `ward_no`, `tole`, `contact_no`, `property_type`, `estimated_price`, `total_rooms`, `bedroom`, `living_room`, `kitchen`, `bathroom`, `description`, `latitude`, `longitude`, `owner_id`, `booked`) VALUES
-(123, 'Nepal', 'Bagmati Pradesh', 'Bagmati', 'Taplejung', 'Kirtipur', 'Municipality', 3, 'palifal', 9860462146, 'Full House Rent', 2000000, 2, 3, 3, 3, 3, 'nmjhvgc', 27.679130, 85.327872, 1, ''),
-(124, 'Nepal', 'Gandaki Pradesh', 'Gandaki', 'Kaski', 'Pokhara', 'Municipality', 14, 'Lakeside', 9803480519, 'Full House Rent', 2000000, 15, 5, 2, 2, 7, 'This is a beautiful property located near Lakeside, Pokhara.', 27.679130, 85.327872, 1, ''),
-(125, 'Nepal', 'Province No. 1', 'Bheri', 'Panchthar', 'BANDA ACEH', '', 0, 'asd', 0, 'Full House Rent', 123123123, 1, 1, 1, 1, 1, '1', 5.568923, 95.362562, 2, 'Yes');
+INSERT INTO `add_property` (`property_id`, `province`, `city`, `contact_no`, `property_type`, `estimated_price`, `total_rooms`, `description`, `latitude`, `longitude`, `owner_id`, `booked`) VALUES
+(153, 'Sumatera Utara', 'BANDA ACEH', 123132, 'Kos Wanita', 55555, 14, 'asdasdad', 5.568923, 95.362562, 2, 'Yes'),
+(157, 'Aceh', 'BANDA ACEH', 123123, 'Kos Pria', 777, 12, '1232', 0.000000, 0.000000, 2, 'No');
 
 -- --------------------------------------------------------
 
@@ -98,7 +87,13 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`tenant_id`, `property_id`, `booked`, `booking_id`) VALUES
-(18, 125, '', 1);
+(18, 128, '', 2),
+(18, 128, '', 3),
+(18, 128, '', 4),
+(18, 127, '', 5),
+(18, 126, '', 6),
+(18, 140, '', 7),
+(18, 153, '', 8);
 
 -- --------------------------------------------------------
 
@@ -119,7 +114,10 @@ CREATE TABLE `chat` (
 INSERT INTO `chat` (`owner_id`, `tenant_id`, `message`) VALUES
 (1, 18, 'hello'),
 (2, 18, 'hai za\r\n'),
-(2, 18, 'halo');
+(2, 18, 'halo'),
+(2, 18, 'hello'),
+(2, 18, '123123'),
+(2, 18, 'p');
 
 -- --------------------------------------------------------
 
@@ -144,7 +142,7 @@ CREATE TABLE `owner` (
 
 INSERT INTO `owner` (`owner_id`, `full_name`, `email`, `password`, `phone_no`, `address`, `id_type`, `id_photo`) VALUES
 (1, 'Nikesh Tiwari', 'nikeshtiwari3230@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 987654321, 'Kirtipur-3', 'Citizenship', 'owner-photo/nikesh.png'),
-(2, 'eki', 'eki@gmail.com', '202cb962ac59075b964b07152d234b70', 123123123, '123', 'Driving Licence', 'owner-photo/WhatsApp Image 2021-08-17 at 16.18.23.jpeg');
+(2, 'eki', 'eki@gmail.com', '202cb962ac59075b964b07152d234b70', 123123123, '1999', 'Driving Licence', 'owner-photo/WhatsApp Image 2021-08-17 at 16.18.23.jpeg');
 
 -- --------------------------------------------------------
 
@@ -167,7 +165,9 @@ INSERT INTO `property_photo` (`property_photo_id`, `p_photo`, `property_id`) VAL
 (175, 'product-photo/b.jpg', 123),
 (176, 'product-photo/b.jpg', 124),
 (177, 'product-photo/a.jpg', 124),
-(178, 'product-photo/Screenshot 2022-11-26 223337.jpg', 125);
+(178, 'product-photo/Screenshot 2022-11-26 223337.jpg', 125),
+(193, 'product-photo/twitter.png', 153),
+(197, 'product-photo/crosshair.png', 157);
 
 -- --------------------------------------------------------
 
@@ -191,7 +191,8 @@ INSERT INTO `review` (`review_id`, `comment`, `rating`, `property_id`) VALUES
 (6, 'I love this property.', 4, 124),
 (7, 'ssoo good', 5, 123),
 (8, 'this properties so niceee', 4, 125),
-(9, 'good', 5, 125);
+(9, 'good', 5, 125),
+(11, 'this is very good', 0, 153);
 
 -- --------------------------------------------------------
 
@@ -216,7 +217,9 @@ CREATE TABLE `tenant` (
 
 INSERT INTO `tenant` (`tenant_id`, `full_name`, `email`, `password`, `phone_no`, `address`, `id_type`, `id_photo`) VALUES
 (17, 'Nikesh Tiwari', 'nikeshtiwari3230@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 987654321, 'Kirtipur-3', 'Citizenship', 'tenant-photo/nikesh.png'),
-(18, 'zaki', 'zaki@gmail.com', '202cb962ac59075b964b07152d234b70', 123123123, 'zaki', 'Citizenship', 'tenant-photo/WhatsApp Image 2021-08-17 at 16.18.23.jpeg');
+(18, 'zaki', 'zaki@gmail.com', '202cb962ac59075b964b07152d234b70', 123123123, 'zaki', 'Citizenship', 'tenant-photo/WhatsApp Image 2021-08-17 at 16.18.23.jpeg'),
+(19, 'tenant', 'tenant@gmail.com', '202cb962ac59075b964b07152d234b70', 123, 'ACEH', 'Citizenship', 'tenant-photo/WhatsApp Image 2023-11-15 at 19.21-PhotoRoom.png'),
+(20, 'Zaki Z', 'eki.zamani@gmail.com', '202cb962ac59075b964b07152d234b70', 82261308654, 'ACEH', 'Citizenship', 'tenant-photo/dark2.jpg');
 
 --
 -- Indexes for dumped tables
@@ -275,7 +278,7 @@ ALTER TABLE `tenant`
 -- AUTO_INCREMENT untuk tabel `add_property`
 --
 ALTER TABLE `add_property`
-  MODIFY `property_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `property_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT untuk tabel `admin`
@@ -287,7 +290,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `booking_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `booking_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `owner`
@@ -299,19 +302,19 @@ ALTER TABLE `owner`
 -- AUTO_INCREMENT untuk tabel `property_photo`
 --
 ALTER TABLE `property_photo`
-  MODIFY `property_photo_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `property_photo_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- AUTO_INCREMENT untuk tabel `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `review_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tenant`
 --
 ALTER TABLE `tenant`
-  MODIFY `tenant_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `tenant_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
